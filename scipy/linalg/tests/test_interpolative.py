@@ -213,3 +213,9 @@ class TestInterpolativeDecomposition:
         B = A.copy()
         interp_decomp(A.T, eps, rand=rand)
         assert_array_equal(A, B)
+
+    def test_bug_22451(self):
+        A = np.random.randn(3, 2)
+        A = aslinearoperator(A)
+
+        pymatrixid.svd(A, 1)
